@@ -1,0 +1,4 @@
+this is a list of words
+note that some words may repeat
+add words only once not twice
+the list is a list of unique words
