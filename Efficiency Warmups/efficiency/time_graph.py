@@ -8,9 +8,9 @@ import numpy as np
 class TimeGraph:
 
     def _time_fn(self, fn, n):
-        t0 = time.time()
+        t0 = time.perf_counter()
         fn(n)
-        t1 = time.time()
+        t1 = time.perf_counter()
         return t1 - t0
 
     def _do_timing(self, fn, iterations=16):
