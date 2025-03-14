@@ -12,16 +12,27 @@ def edge_detect(duck):
     print('adsfadsfadfadfa')
     # Apply the kernel
     height, width, color = duck.shape
+    backwhite = np.dot(duck[..., :3], [0.2989, 0.5870, 0.1140])
     for h in range(1, 3):
         for w in range(1, 3):
-            sliced = duck[h - 1: h + 2, w - 1: w + 2, :]    
-            # print(sliced)
+            sliced = backwhite[h - 1: h + 2, w - 1: w + 2]
+            new = sliced * kernel
+            print(new)
+            print('----')
+            for row in new:
+                for pix in row:
+                    if pix > 127:
+                        new[row, pix] = 255
+                    else:
+                        new[row, pix] = 0
+            print(new)
+            print('----------------------')
             # print('--------------------------------------')
-            for kc in range(3):
-                for kr in range(3):
-                    print(sliced[kc, kr], 'on', kernel[kc, kr])
-                    sliced[kc, kr] *= kernel[kc, kr]
-                    print(sliced[kc, kr])
+            # for kc in range(3):
+            #     for kr in range(3):
+            #         print(sliced[kc, kr], 'on', kernel[kc, kr])
+            #         sliced[kc, kr] *= kernel[kc, kr]
+            #         print(sliced[kc, kr])
     # Normalize the image
     
     return duck
